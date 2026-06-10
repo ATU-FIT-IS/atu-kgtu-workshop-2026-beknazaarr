@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InternHub — Найди свою первую стажировку</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Google Fonts: Inter (body) + Sora (display) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ========================================================
+     ШАПКА САЙТА (Header / Navigation)
+     ======================================================== -->
+<header class="header" id="header">
+  <div class="container header__inner">
+
+    <!-- Логотип -->
+    <a href="#" class="logo" onclick="showPage('home')">
+      <span class="logo__icon">◈</span>
+      <span class="logo__text">Intern<strong>Hub</strong></span>
+    </a>
+
+    <!-- Навигация (Desktop) -->
+    <nav class="nav" id="mainNav">
+      <a href="#" class="nav__link" onclick="showPage('vacancies')">Вакансии</a>
+      <a href="#" class="nav__link" onclick="showPage('companies')">Компании</a>
+      <a href="#" class="nav__link" onclick="showPage('matcher')">Подбор</a>
+      <a href="#" class="nav__link" onclick="showPage('skills')">Навыки</a>
+      <a href="#" class="nav__link" onclick="showPage('resume')">Резюме</a>
+    </nav>
+
+    <!-- Кнопки входа -->
+    <div class="header__actions">
+      <button class="btn btn--ghost" onclick="showPage('apply')">Войти</button>
+      <button class="btn btn--primary" onclick="showPage('apply')">Подать заявку</button>
+    </div>
+
+    <!-- Бургер-кнопка (Mobile) -->
+    <button class="burger" id="burgerBtn" aria-label="Открыть меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ========================================================
+     МОБИЛЬНОЕ МЕНЮ
+     ======================================================== -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" onclick="showPage('home'); closeMobileMenu()">Главная</a>
+  <a href="#" onclick="showPage('vacancies'); closeMobileMenu()">Вакансии</a>
+  <a href="#" onclick="showPage('companies'); closeMobileMenu()">Компании</a>
+  <a href="#" onclick="showPage('matcher'); closeMobileMenu()">Подбор</a>
+  <a href="#" onclick="showPage('skills'); closeMobileMenu()">Навыки</a>
+  <a href="#" onclick="showPage('resume'); closeMobileMenu()">Резюме</a>
+  <a href="#" onclick="showPage('apply'); closeMobileMenu()">Подать заявку</a>
+</div>
+
+<!-- ========================================================
+     СТРАНИЦА 1: ГЛАВНАЯ
+     ======================================================== -->
+<main id="page-home" class="page active">
+
+  <!-- Hero-блок -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="hero__badge">🚀 Более 500 стажировок</span>
+        <h1 class="hero__title">Найди свою<br><em>первую стажировку</em></h1>
+        <p class="hero__subtitle">Платформа для студентов, которые хотят начать карьеру в IT. Реальные проекты, менторы и оффер.</p>
+
+        <!-- Поисковая строка -->
+        <div class="hero__search">
+          <div class="search-box">
+            <span class="search-box__icon">🔍</span>
+            <input
+              type="text"
+              id="heroSearch"
+              class="search-box__input"
+              placeholder="Должность, компания или навык..."
+            />
+            <button class="btn btn--primary search-box__btn" onclick="doHeroSearch()">Найти</button>
+          </div>
+          <div class="hero__tags">
+            <span class="tag" onclick="setSearch('Frontend')">Frontend</span>
+            <span class="tag" onclick="setSearch('Data Science')">Data Science</span>
+            <span class="tag" onclick="setSearch('UI/UX')">UI/UX</span>
+            <span class="tag" onclick="setSearch('Backend')">Backend</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero иллюстрация (SVG-код) -->
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero__card-float hero__card-float--1">
+          <span>🎯</span> Google предлагает стажировку
+        </div>
+        <div class="hero__card-float hero__card-float--2">
+          <span>✅</span> Заявка одобрена!
+        </div>
+        <div class="hero__blob"></div>
+        <div class="hero__dots"></div>
+      </div>
+    </div>
+
+    <!-- Статистика -->
+    <div class="container">
+      <div class="hero__stats">
+        <div class="stat">
+          <strong class="stat__num" data-target="500">0</strong>
+          <span class="stat__label">Вакансий</span>
+        </div>
+        <div class="stat">
+          <strong class="stat__num" data-target="120">0</strong>
+          <span class="stat__label">Компаний</span>
+        </div>
+        <div class="stat">
+          <strong class="stat__num" data-target="3200">0</strong>
+          <span class="stat__label">Студентов</span>
+        </div>
+        <div class="stat">
+          <strong class="stat__num" data-target="89">0</strong>
+          <span class="stat__label">% трудоустройства</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Преимущества -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Почему InternHub</span>
+        <h2 class="section-title">Всё что нужно для старта карьеры</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-card__icon">🎓</div>
+          <h3>Только для студентов</h3>
+          <p>Вакансии специально подобраны для студентов без опыта. Компании готовы обучать.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🤖</div>
+          <h3>Умный подбор</h3>
+          <p>Алгоритм подбирает стажировки на основе твоих навыков и интересов.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">📝</div>
+          <h3>Конструктор резюме</h3>
+          <p>Создай профессиональное резюме за 5 минут прямо на платформе.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">📚</div>
+          <h3>Карта навыков</h3>
+          <p>Узнай, какие технологии изучить, чтобы пройти на желаемую стажировку.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">💬</div>
+          <h3>Менторская поддержка</h3>
+          <p>Общайся с менторами из ведущих компаний перед и во время стажировки.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🏆</div>
+          <h3>Оффер гарантирован</h3>
+          <p>89% студентов получают оффер после успешного завершения стажировки.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Популярные вакансии -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Горящие вакансии</span>
+        <h2 class="section-title">Популярные стажировки</h2>
+        <a href="#" class="section-link" onclick="showPage('vacancies')">Смотреть все →</a>
+      </div>
+      <div class="vacancies-grid" id="homeVacanciesList">
+        <!-- Карточки генерируются через JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Популярные компании -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Партнёры</span>
+        <h2 class="section-title">Топ компании</h2>
+        <a href="#" class="section-link" onclick="showPage('companies')">Все компании →</a>
+      </div>
+      <div class="companies-logos" id="homeCompaniesList">
+        <!-- Логотипы генерируются через JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA-блок -->
+  <section class="cta-section">
+    <div class="container cta-section__inner">
+      <div>
+        <h2>Готов начать карьеру?</h2>
+        <p>Зарегистрируйся и получи доступ к сотням стажировок прямо сейчас.</p>
+      </div>
+      <div class="cta-section__actions">
+        <button class="btn btn--white" onclick="showPage('apply')">Подать заявку</button>
+        <button class="btn btn--outline-white" onclick="showPage('vacancies')">Смотреть вакансии</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========================================================
+     СТРАНИЦА 2: КАТАЛОГ ВАКАНСИЙ
+     ======================================================== -->
+<main id="page-vacancies" class="page">
+  <div class="page-hero page-hero--blue">
+    <div class="container">
+      <h1>Каталог стажировок</h1>
+      <p>Найди идеальную стажировку среди сотен предложений</p>
+    </div>
+  </div>
+
+  <div class="container catalog-layout">
+    <!-- Фильтр (Sidebar) -->
+    <aside class="filters-panel">
+      <h3 class="filters-panel__title">Фильтры</h3>
+
+      <div class="filter-group">
+        <label class="filter-group__label">Поиск</label>
+        <div class="search-mini">
+          <input type="text" id="vacSearch" placeholder="Название или компания..." oninput="filterVacancies()" />
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-group__label">Направление</label>
+        <div class="filter-checks" id="directionFilters">
+          <label class="check-label"><input type="checkbox" value="Frontend" onchange="filterVacancies()" checked /> Frontend</label>
+          <label class="check-label"><input type="checkbox" value="Backend" onchange="filterVacancies()" checked /> Backend</label>
+          <label class="check-label"><input type="checkbox" value="Data Science" onchange="filterVacancies()" checked /> Data Science</label>
+          <label class="check-label"><input type="checkbox" value="Cybersecurity" onchange="filterVacancies()" checked /> Cybersecurity</label>
+          <label class="check-label"><input type="checkbox" value="UI/UX Design" onchange="filterVacancies()" checked /> UI/UX Design</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-group__label">Тип стажировки</label>
+        <div class="filter-checks" id="typeFilters">
+          <label class="check-label"><input type="checkbox" value="Оплачиваемая" onchange="filterVacancies()" checked /> Оплачиваемая</label>
+          <label class="check-label"><input type="checkbox" value="Удалённая" onchange="filterVacancies()" checked /> Удалённая</label>
+          <label class="check-label"><input type="checkbox" value="Гибридная" onchange="filterVacancies()" checked /> Гибридная</label>
+        </div>
+      </div>
+
+      <button class="btn btn--primary btn--full" onclick="resetFilters()">Сбросить фильтры</button>
+    </aside>
+
+    <!-- Список вакансий -->
+    <div class="vacancies-catalog">
+      <div class="vacancies-catalog__header">
+        <span id="vacCount">Загрузка...</span>
+        <select id="vacSort" onchange="filterVacancies()">
+          <option value="new">Сначала новые</option>
+          <option value="alpha">По алфавиту</option>
+        </select>
+      </div>
+      <div class="vacancies-grid vacancies-grid--full" id="vacanciesList">
+        <!-- Карточки генерируются через JS -->
+      </div>
+      <div class="empty-state" id="vacEmptyState" style="display:none">
+        <span>🔍</span>
+        <p>Вакансии не найдены. Попробуй изменить фильтры.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ========================================================
+     СТРАНИЦА 3: КОМПАНИИ
+     ======================================================== -->
+<main id="page-companies" class="page">
+  <div class="page-hero page-hero--purple">
+    <div class="container">
+      <h1>Компании-партнёры</h1>
+      <p>Ведущие IT-компании, готовые взять тебя на стажировку</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="companies-grid" id="companiesList">
+      <!-- Карточки генерируются через JS -->
+    </div>
+  </div>
+</main>
+
+<!-- ========================================================
+     СТРАНИЦА 4: ПОДБОР ВАКАНСИЙ
+     ======================================================== -->
+<main id="page-matcher" class="page">
+  <div class="page-hero page-hero--green">
+    <div class="container">
+      <h1>Умный подбор стажировок</h1>
+      <p>Заполни форму — алгоритм найдёт подходящие варианты</p>
+    </div>
+  </div>
+  <div class="container matcher-layout">
+    <div class="matcher-form-wrap">
+      <form class="matcher-form" onsubmit="matchVacancies(event)">
+        <h3>Расскажи о себе</h3>
+
+        <div class="form-group">
+          <label>Интересующая сфера</label>
+          <select id="matchSphere" required>
+            <option value="">Выбери направление</option>
+            <option>Frontend</option>
+            <option>Backend</option>
+            <option>Data Science</option>
+            <option>Cybersecurity</option>
+            <option>UI/UX Design</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Уровень знаний</label>
+          <select id="matchLevel" required>
+            <option value="">Выбери уровень</option>
+            <option value="beginner">Начинающий (нет опыта)</option>
+            <option value="junior">Junior (есть базовые знания)</option>
+            <option value="middle">Middle (есть пет-проекты)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Желаемая должность</label>
+          <input type="text" id="matchPosition" placeholder="Например: React Developer" />
+        </div>
+
+        <div class="form-group">
+          <label>Навыки (через запятую)</label>
+          <input type="text" id="matchSkills" placeholder="Например: HTML, CSS, JavaScript" />
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full btn--lg">
+          🎯 Подобрать вакансии
+        </button>
+      </form>
+    </div>
+
+    <div class="matcher-results" id="matcherResults">
+      <div class="matcher-placeholder">
+        <span>🤖</span>
+        <p>Заполни форму слева — здесь появятся подходящие стажировки</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ========================================================
+     СТРАНИЦА 5: РЕКОМЕНДАЦИИ ПО НАВЫКАМ
+     ======================================================== -->
+<main id="page-skills" class="page">
+  <div class="page-hero page-hero--orange">
+    <div class="container">
+      <h1>Карта навыков</h1>
+      <p>Узнай, что нужно изучить для желаемой стажировки</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="skills-tabs">
+      <button class="skills-tab active" onclick="showSkills('Frontend', this)">Frontend</button>
+      <button class="skills-tab" onclick="showSkills('Backend', this)">Backend</button>
+      <button class="skills-tab" onclick="showSkills('DataScience', this)">Data Science</button>
+      <button class="skills-tab" onclick="showSkills('Cybersecurity', this)">Cybersecurity</button>
+      <button class="skills-tab" onclick="showSkills('UX', this)">UI/UX Design</button>
+    </div>
+    <div class="skills-content" id="skillsContent">
+      <!-- Генерируется через JS -->
+    </div>
+  </div>
+</main>
+
+<!-- ========================================================
+     СТРАНИЦА 6: КОНСТРУКТОР РЕЗЮМЕ
+     ======================================================== -->
+<main id="page-resume" class="page">
+  <div class="page-hero page-hero--teal">
+    <div class="container">
+      <h1>Конструктор резюме</h1>
+      <p>Создай профессиональное резюме за 5 минут</p>
+    </div>
+  </div>
+  <div class="container resume-layout">
+
+    <!-- Форма -->
+    <div class="resume-form-wrap">
+      <div class="resume-section-block">
+        <h3>👤 Личные данные</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Имя</label>
+            <input type="text" id="rFirstName" placeholder="Алибек" oninput="updateResume()" />
+          </div>
+          <div class="form-group">
+            <label>Фамилия</label>
+            <input type="text" id="rLastName" placeholder="Сейткали" oninput="updateResume()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Желаемая должность</label>
+          <input type="text" id="rPosition" placeholder="Frontend Developer Intern" oninput="updateResume()" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="rEmail" placeholder="alibek@email.com" oninput="updateResume()" />
+          </div>
+          <div class="form-group">
+            <label>Телефон</label>
+            <input type="tel" id="rPhone" placeholder="+7 777 123 4567" oninput="updateResume()" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Город</label>
+          <input type="text" id="rCity" placeholder="Алматы" oninput="updateResume()" />
+        </div>
+      </div>
+
+      <div class="resume-section-block">
+        <h3>🎓 Образование</h3>
+        <div class="form-group">
+          <label>Университет</label>
+          <input type="text" id="rUniversity" placeholder="КГТУ им. К.И. Сатпаева" oninput="updateResume()" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Специальность</label>
+            <input type="text" id="rSpec" placeholder="Информационные системы" oninput="updateResume()" />
+          </div>
+          <div class="form-group">
+            <label>Год окончания</label>
+            <input type="text" id="rYear" placeholder="2026" oninput="updateResume()" />
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-section-block">
+        <h3>💻 Навыки</h3>
+        <div class="form-group">
+          <label>Технические навыки (через запятую)</label>
+          <input type="text" id="rSkills" placeholder="HTML, CSS, JavaScript, React, Git" oninput="updateResume()" />
+        </div>
+        <div class="form-group">
+          <label>Языки</label>
+          <input type="text" id="rLangs" placeholder="Казахский (родной), Русский (С1), Английский (B2)" oninput="updateResume()" />
+        </div>
+      </div>
+
+      <div class="resume-section-block">
+        <h3>📋 О себе</h3>
+        <div class="form-group">
+          <textarea id="rAbout" rows="4" placeholder="Расскажи о своих целях, опыте и мотивации..." oninput="updateResume()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Предпросмотр резюме -->
+    <div class="resume-preview-wrap">
+      <div class="resume-preview-header">
+        <span>Предпросмотр</span>
+        <button class="btn btn--primary btn--sm" onclick="printResume()">⬇ Скачать PDF</button>
+      </div>
+      <div class="resume-preview" id="resumePreview">
+        <!-- Генерируется через JS в реальном времени -->
+        <div class="resume-empty">
+          <span>📄</span>
+          <p>Начни заполнять форму — резюме появится здесь</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ========================================================
+     СТРАНИЦА 7: ФОРМА ЗАЯВКИ
+     ======================================================== -->
+<main id="page-apply" class="page">
+  <div class="page-hero page-hero--pink">
+    <div class="container">
+      <h1>Подать заявку</h1>
+      <p>Один шаг до твоей первой стажировки</p>
+    </div>
+  </div>
+  <div class="container apply-layout">
+    <div class="apply-form-wrap">
+      <form class="apply-form" id="applyForm" onsubmit="submitApplication(event)">
+        <div class="form-group">
+          <label>Имя и фамилия *</label>
+          <input type="text" id="apName" placeholder="Алибек Сейткали" required />
+        </div>
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="apEmail" placeholder="alibek@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>Телефон *</label>
+          <input type="tel" id="apPhone" placeholder="+7 777 000 0000" required />
+        </div>
+        <div class="form-group">
+          <label>Выбранная вакансия *</label>
+          <select id="apVacancy" required>
+            <option value="">Выбери вакансию</option>
+            <!-- Заполняется из JS -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Сопроводительное письмо</label>
+          <textarea id="apLetter" rows="6" placeholder="Расскажи, почему тебя заинтересовала именно эта стажировка..."></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary btn--full btn--lg">
+          📨 Отправить заявку
+        </button>
+      </form>
+    </div>
+
+    <div class="apply-info">
+      <div class="apply-tip-card">
+        <div class="apply-tip-card__icon">💡</div>
+        <h4>Советы для заявки</h4>
+        <ul>
+          <li>Напиши, почему тебя интересует именно эта компания</li>
+          <li>Укажи конкретные проекты и достижения</li>
+          <li>Будь искренним и конкретным</li>
+          <li>Проверь письмо на ошибки перед отправкой</li>
+        </ul>
+      </div>
+      <div class="apply-tip-card">
+        <div class="apply-tip-card__icon">⚡</div>
+        <h4>Что дальше?</h4>
+        <ul>
+          <li>Рекрутер свяжется в течение 3–5 дней</li>
+          <li>Возможно техническое интервью</li>
+          <li>Тестовое задание (для некоторых позиций)</li>
+          <li>Финальное собеседование с командой</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- ========================================================
+     МОДАЛЬНОЕ ОКНО (Детали вакансии)
+     ======================================================== -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal__close" onclick="closeModal()">✕</button>
+    <div class="modal__body" id="modalBody">
+      <!-- Заполняется через JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================
+     ТОСТ-УВЕДОМЛЕНИЕ
+     ======================================================== -->
+<div class="toast" id="toast"></div>
+
+<!-- ========================================================
+     ПОДВАЛ САЙТА
+     ======================================================== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__col">
+      <a href="#" class="logo logo--white" onclick="showPage('home')">
+        <span class="logo__icon">◈</span>
+        <span class="logo__text">Intern<strong>Hub</strong></span>
+      </a>
+      <p>Платформа поиска стажировок для студентов IT-специальностей.</p>
+    </div>
+    <div class="footer__col">
+      <h4>Студентам</h4>
+      <a href="#" onclick="showPage('vacancies')">Каталог вакансий</a>
+      <a href="#" onclick="showPage('matcher')">Подбор стажировки</a>
+      <a href="#" onclick="showPage('skills')">Карта навыков</a>
+      <a href="#" onclick="showPage('resume')">Конструктор резюме</a>
+    </div>
+    <div class="footer__col">
+      <h4>Компаниям</h4>
+      <a href="#">Разместить вакансию</a>
+      <a href="#">Найти стажёра</a>
+      <a href="#" onclick="showPage('companies')">Партнёры</a>
+    </div>
+    <div class="footer__col">
+      <h4>Контакты</h4>
+      <a href="mailto:hello@internhub.kz">hello@internhub.kz</a>
+      <a href="#">Telegram</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container">
+      <p>© 2026 InternHub. Сделано с ❤️ для студентов Казахстана.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
